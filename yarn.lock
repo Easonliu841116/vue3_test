@@ -1123,11 +1123,6 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@splidejs/splide@2.3.8":
-  version "2.3.8"
-  resolved "https://registry.yarnpkg.com/@splidejs/splide/-/splide-2.3.8.tgz#de5ac8e49be0e1933f3029f1f8012f86ae4fe1dd"
-  integrity sha512-vcc0m5qKb/NYcxlUio2/T7xn+9YL5PoJMyrdJ4Xp85UOwf+irAQajIupW405OYA9V1QPutsfxXAGRAxEB96VTQ==
-
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@szmarczak/http-timer/-/http-timer-1.1.2.tgz#b1665e2c461a2cd92f4c1bbf50d5454de0d4b421"
@@ -1494,11 +1489,6 @@
     "@webassemblyjs/ast" "1.9.0"
     "@webassemblyjs/wast-parser" "1.9.0"
     "@xtuc/long" "4.2.2"
-
-"@webcomponents/template@^1.4.3":
-  version "1.4.3"
-  resolved "https://registry.yarnpkg.com/@webcomponents/template/-/template-1.4.3.tgz#edf3cb7e8870be484463d4711e2ff106e30d187d"
-  integrity sha512-Sx4vfXuHUz2pwhjFRv9maFiaKouXqImFlb7L5GwdCxwxflmbAchWTJaf3UyE2of1tVOFzB1gjZx+BAB7KVa7kw==
 
 "@xtuc/ieee754@^1.2.0":
   version "1.2.0"
