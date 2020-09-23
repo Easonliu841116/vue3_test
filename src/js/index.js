@@ -1,5 +1,6 @@
+import 'normalize.css'
 import '../style/index.sass'
-import { ref, createApp } from './vue.config'
+import { ref, createApp } from './vue.common'
 import './components/add'
 
 const Todo = {

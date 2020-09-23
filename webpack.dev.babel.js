@@ -18,7 +18,7 @@ const webpackConfig = {
     host: '0.0.0.0',
     port: PORT,
     onListening: () => {
-      console.log(chalk.white.bgRed('startAt: '), `http://localhost:${PORT}`);
+      console.log(chalk.white.bgGreen('startAt: '), `http://localhost:${PORT}`);
     }
   },
 }

@@ -1,4 +1,4 @@
 export const ENGINE = 'hbs'
-export const PORT = 8080
+export const PORT = 8082
 export const ENV = process.env.NODE_ENV
-export const PUBLICPATH = '/dist'
+export const PUBLICPATH = '/eason/test'

@@ -7,7 +7,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin'
 import { ENGINE, ENV, PUBLICPATH } from './config'
 import imgpath from './src/js/hbsHelpers/imgpath'
 
-const pageSrc = path.resolve(__dirname, 'src/pages')
+const ViewSrc = path.resolve(__dirname, 'src/views/pages')
 
 function pageWalker(pageDir) {
   return fs
@@ -17,14 +17,14 @@ function pageWalker(pageDir) {
 }
 function template(page) {
   return {
-    template: `./pages/${page}.${ENGINE}`,
+    template: `./views/pages/${page}.${ENGINE}`,
     filename: `${page}.html`,
     chunks: ['vendor', page]
   }
 }
 
 let entries = {}
-pageWalker(pageSrc).map((el) => {
+pageWalker(ViewSrc).map((el) => {
   entries[el] = ['@babel/polyfill', `./js/${el}.js`]
 })
 
@@ -59,7 +59,7 @@ const webpackConfig = {
       color: 'green',
       profile: true,
     }),
-    ...pageWalker(pageSrc).map(name => new HtmlWebpackPlugin(template(name))),
+    ...pageWalker(ViewSrc).map(name => new HtmlWebpackPlugin(template(name))),
   ],
   module: {
     rules: [
@@ -68,6 +68,7 @@ const webpackConfig = {
         loader: "handlebars-loader",
         options: {
           helperDirs: path.resolve(__dirname, 'src/js/hbsHelpers'),
+          partialDirs: [path.join(__dirname, 'src/views')],
           knownHelpers: [
             imgpath
           ]
