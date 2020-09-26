@@ -77,7 +77,7 @@ const webpackConfig = {
       {
         test: /\.sass$/,
         use: () => {
-          const loaders = ['css-loader', 'postcss-loader', 'sass-loader']
+          const loaders = ['css-loader', 'resolve-url-loader', 'postcss-loader', 'sass-loader']
           return ENV === 'development'
             ? ['style-loader', ...loaders.map(el => el += '?sourceMap=true')]
             : ENV === 'development:css'
@@ -88,7 +88,7 @@ const webpackConfig = {
       {
         test: /\.css$/,
         use: () => 
-          ENV === 'development' ? ['style-loader', 'css-loader?sourceMap=true'] : [MiniCssExtractPlugin.loader, 'css-loader']
+          ENV === 'development' ? ['style-loader', 'css-loader?sourceMap=true', 'resolve-url-loader'] : [MiniCssExtractPlugin.loader, 'css-loader', 'resolve-url-loader']
       },
       {
         test: /\.js$/,
