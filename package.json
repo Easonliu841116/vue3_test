@@ -1,16 +1,20 @@
 {
-  "name": "udn-world",
-  "version": "1.0.0",
-  "description": "udn-world",
+  "name": "eason-webpack-template",
+  "version": "1.0.1",
+  "private": true,
+  "description": "eason-webpack-template",
   "scripts": {
-    "start": "run-p dev",
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.babel.js",
-    "dev:css": "cross-env NODE_ENV=development:css webpack-dev-server --config webpack.dev.babel.js",
+    "demo": "cross-env NODE_ENV=development DEV_ENV=cssextract webpack-dev-server --config webpack.dev.babel.js",
     "test": "jest",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.babel.js"
+    "analyze": "cross-env NODE_ENV=production PROD_ENV=analyze webpack --config webpack.prod.babel.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.babel.js",
+    "build:prettify": "cross-env NODE_ENV=production PRETTIFY=prettify webpack --config webpack.prod.babel.js",
+    "deploy": "cross-env NODE_ENV=production PROD_ENV=deploy webpack --config webpack.prod.babel.js",
+    "deploy:prettify": "cross-env NODE_ENV=production PROD_ENV=deploy PRETTIFY=prettify webpack --config webpack.prod.babel.js"
   },
-  "author": "easonLiu",
-  "license": "MIT",
+  "author": "EasonLiu",
+  "license": "UNLICENSED",
   "browserslist": [
     "> 0.25%",
     "not dead",
@@ -41,14 +45,17 @@
     "cross-env": "^7.0.2",
     "css-loader": "^4.2.1",
     "file-loader": "^6.0.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
     "handlebars": "^4.7.6",
     "handlebars-loader": "^1.7.1",
     "html-webpack-plugin": "^4.3.0",
+    "ip": "^1.1.5",
     "jest": "^26.4.2",
     "mini-css-extract-plugin": "^0.9.0",
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "portfinder": "^1.0.28",
     "postcss": "^7.0.32",
     "postcss-loader": "^3.0.0",
     "postcss-preset-env": "^6.7.0",
@@ -63,17 +70,16 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^5.1.1",
-    "webpackbar": "^4.0.0",
-    "zlib": "^1.0.5"
+    "webpackbar": "^4.0.0"
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.4",
     "@babel/runtime": "^7.11.2",
     "copy-webpack-plugin": "^6.0.3",
     "core-js": "^3.6.5",
-    "ip": "^1.1.5",
     "lazysizes": "^5.2.2",
     "normalize.css": "^8.0.1",
-    "vue": "^3.0.0-rc.12"
+    "vue": "^3.0.0-rc.12",
+    "zlib": "^1.0.5"
   }
 }

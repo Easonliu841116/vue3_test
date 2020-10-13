@@ -3,8 +3,9 @@ import fs from 'fs'
 import WebpackBar from 'webpackbar'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
+import Webapck from 'webpack'
 
-import { ENGINE, ENV, PUBLICPATH } from './config'
+import { ENGINE, DEV_ENV, PROD_ENV, NODE_ENV, PUBLICPATH, PRETTIFY } from './config'
 import imgpath from './src/js/hbsHelpers/imgpath'
 
 const ViewSrc = path.resolve(__dirname, 'src/views/pages')
@@ -19,7 +20,8 @@ function template(page) {
   return {
     template: `./views/pages/${page}.${ENGINE}`,
     filename: `${page}.html`,
-    chunks: ['vendor', page]
+    chunks: ['vendor', page],
+    minify: PRETTIFY === 'prettify' ? false : true
   }
 }
 
@@ -34,7 +36,7 @@ const webpackConfig = {
   output: {
     filename: 'static/js/[name].js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: ENV === 'production' ? PUBLICPATH : '/',
+    publicPath: NODE_ENV === 'production' ? PUBLICPATH : '/',
   },
   optimization: {
     splitChunks: {
@@ -54,10 +56,19 @@ const webpackConfig = {
       filename: 'static/css/[name].css',
       chunks: 'all',
       enforce: true,
+      publicPath: NODE_ENV === 'production' ? PUBLICPATH : '/'
     }),
     new WebpackBar({
       color: 'green',
       profile: true,
+    }),
+    new Webapck.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(NODE_ENV),
+        DEV_ENV: JSON.stringify(DEV_ENV),
+        PROD_ENV: JSON.stringify(PROD_ENV),
+        PRETTIFY: JSON.stringify(PRETTIFY)
+      }
     }),
     ...pageWalker(ViewSrc).map(name => new HtmlWebpackPlugin(template(name))),
   ],
@@ -78,9 +89,9 @@ const webpackConfig = {
         test: /\.sass$/,
         use: () => {
           const loaders = ['css-loader', 'resolve-url-loader', 'postcss-loader', 'sass-loader']
-          return ENV === 'development'
+          return NODE_ENV === 'development'
             ? ['style-loader', ...loaders.map(el => el += '?sourceMap=true')]
-            : ENV === 'development:css'
+            : DEV_ENV === 'cssextract'
             ? [MiniCssExtractPlugin.loader, ...loaders.map(el => el += '?sourceMap=true')]
             : [MiniCssExtractPlugin.loader, ...loaders]
         }
@@ -88,7 +99,9 @@ const webpackConfig = {
       {
         test: /\.css$/,
         use: () => 
-          ENV === 'development' ? ['style-loader', 'css-loader?sourceMap=true', 'resolve-url-loader'] : [MiniCssExtractPlugin.loader, 'css-loader', 'resolve-url-loader']
+          NODE_ENV === 'development'
+          ? ['style-loader', 'css-loader?sourceMap=true', 'resolve-url-loader']
+          : [MiniCssExtractPlugin.loader, 'css-loader', 'resolve-url-loader']
       },
       {
         test: /\.js$/,
@@ -101,6 +114,7 @@ const webpackConfig = {
           {
             loader: 'url-loader',
             options: {
+              name: NODE_ENV === 'production' ? '/static/images/[name].[ext]': './static/images/[name].[ext]',
               limit: 1000
             },
           },
@@ -112,6 +126,7 @@ const webpackConfig = {
           {
             loader: 'url-loader',
             options: {
+              name: NODE_ENV === 'production' ? '/static/images/[name].[ext]': './static/images/[name].[ext]',
               limit: 10000
             },
           },
@@ -121,4 +136,4 @@ const webpackConfig = {
   },
 }
 
-module.exports = webpackConfig
+export default webpackConfig
