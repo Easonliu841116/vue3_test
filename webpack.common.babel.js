@@ -5,7 +5,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import Webapck from 'webpack'
 
-import { ENGINE, DEV_ENV, PROD_ENV, NODE_ENV, PUBLICPATH, PRETTIFY } from './config'
+import { ENGINE, DEV_ENV, PROD_ENV, NODE_ENV, PUBLICPATH, PRETTIFY, INCLUDEDIR } from './config'
 import imgpath from './src/js/hbsHelpers/imgpath'
 
 const ViewSrc = path.resolve(__dirname, 'src/views/pages')
@@ -106,7 +106,11 @@ const webpackConfig = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/,
+        exclude: new RegExp(
+          INCLUDEDIR.length
+          ? `node_modules\/(?!(${INCLUDEDIR}))`
+          : 'node_modules'
+        ),
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,

@@ -24,7 +24,7 @@ const webpackConfig = {
   },
 }
 
-module.exports = new Promise((res, rej) => {
+export default new Promise((res, rej) => {
 	portfinder.basePort = process.env.PORT || PORT
 	portfinder.getPort((err, port) => {
 		if (err) {

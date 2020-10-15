@@ -68,9 +68,11 @@ if(PROD_ENV === 'deploy') {
   }),)
 }
 
-console.log(`${messagePrefix()} output path: ${chalk.greenBright(PUBLICPATH)}`)
-console.log(`${messagePrefix()} prettify: ${PRETTIFY ? chalk.blueBright(PRETTIFY) : chalk.blueBright('default')}`)
-console.log(`${messagePrefix()} project mode: ${chalk.yellowBright(NODE_ENV)}`)
-console.log(`${messagePrefix()} production mode: ${PROD_ENV ? chalk.yellowBright(PROD_ENV) : chalk.yellowBright('default')}`)
+console.log(
+  `${messagePrefix()} output path: ${chalk.greenBright(PUBLICPATH)}`, '\n',
+  `${messagePrefix()} prettify: ${PRETTIFY ? chalk.blueBright(PRETTIFY) : chalk.blueBright('default')}`, '\n',
+  `${messagePrefix()} project mode: ${chalk.yellowBright(NODE_ENV)}` , '\n',
+  `${messagePrefix()} production mode: ${PROD_ENV ? chalk.yellowBright(PROD_ENV) : chalk.yellowBright('default')}`
+)
 
 export default merge(webpackBaseConfig, webpackConfig)
