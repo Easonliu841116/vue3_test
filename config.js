@@ -6,4 +6,5 @@ export const PRETTIFY = process.env.PRETTIFY
 export let PUBLICPATH = '' // ex: '/test/123'
 export let ENGINE = 'hbs'
 export let PORT = 8080
+export let SERVER = 5500
 export let INCLUDEDIR = '' // ex: 'apple|banana'

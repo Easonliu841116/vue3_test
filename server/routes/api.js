@@ -1,6 +1,7 @@
-const express = require('express')
+import express from 'express'
+import delay from 'delay'
+
 const router = express.Router()
-const delay = require('delay')
 
 router.get('/test', async (req, res) => {
   res.json({
@@ -8,4 +9,5 @@ router.get('/test', async (req, res) => {
   })
 })
 
+// export 不能用 ES6 ??
 module.exports = router

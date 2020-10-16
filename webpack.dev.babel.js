@@ -6,7 +6,7 @@ import FriendlyErrorsPlugin from 'friendly-errors-webpack-plugin'
 import ip from 'ip'
 
 import webpackBaseConfig from './webpack.common.babel'
-import { PORT, NODE_ENV, DEV_ENV } from './config'
+import { PORT, SERVER, NODE_ENV, DEV_ENV } from './config'
 
 const webpackConfig = {
   stats: 'errors-only',
@@ -37,6 +37,7 @@ export default new Promise((res, rej) => {
 					compilationSuccessInfo: {
 						messages: [
               `project start at: ${chalk.greenBright(`http://localhost:${port}/`)} || ${chalk.greenBright(`http://${ip.address()}:${port}/`)}`,
+              `server running at ${chalk.blueBright(`http://localhost:${SERVER}/`)}`,
               `project mode: ${chalk.yellowBright(NODE_ENV)}`,
               `development mode: ${DEV_ENV ? chalk.yellowBright(DEV_ENV) : chalk.yellowBright('default')}`
 						],
