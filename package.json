@@ -4,17 +4,8 @@
   "private": true,
   "description": "eason-webpack-template",
   "scripts": {
-    "start": "run-p watch dev",
-    "dev": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.babel.js",
-    "demo": "cross-env NODE_ENV=development DEV_ENV=cssextract webpack-dev-server --config webpack.dev.babel.js",
-    "test": "jest",
-    "watch": "nodemon",
-    "server": "babel-node server/app",
-    "analyze": "cross-env NODE_ENV=production PROD_ENV=analyze webpack --config webpack.prod.babel.js",
-    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.babel.js",
-    "build:prettify": "cross-env NODE_ENV=production PRETTIFY=prettify webpack --config webpack.prod.babel.js",
-    "deploy": "cross-env NODE_ENV=production PROD_ENV=deploy webpack --config webpack.prod.babel.js",
-    "deploy:prettify": "cross-env NODE_ENV=production PROD_ENV=deploy PRETTIFY=prettify webpack --config webpack.prod.babel.js"
+    "start": "cross-env NODE_ENV=development webpack-dev-server --config webpack.dev.babel.js",
+    "build": "cross-env NODE_ENV=production webpack --config webpack.prod.babel.js"
   },
   "author": "EasonLiu",
   "license": "UNLICENSED",
@@ -43,10 +34,8 @@
     "autoprefixer": "^9.8.6",
     "babel-loader": "^8.1.0",
     "babel-plugin-dynamic-import-webpack": "^1.1.0",
-    "brotli-webpack-plugin": "^1.1.0",
     "chalk": "^4.1.0",
     "clean-webpack-plugin": "^3.0.0",
-    "compression-webpack-plugin": "^6.0.2",
     "cross-env": "^7.0.2",
     "css-loader": "^4.2.1",
     "file-loader": "^6.0.0",
@@ -55,7 +44,6 @@
     "handlebars-loader": "^1.7.1",
     "html-webpack-plugin": "^4.3.0",
     "ip": "^1.1.5",
-    "jest": "^26.4.2",
     "mini-css-extract-plugin": "^0.9.0",
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",
@@ -83,8 +71,6 @@
     "copy-webpack-plugin": "^6.0.3",
     "core-js": "^3.6.5",
     "lazysizes": "^5.2.2",
-    "normalize.css": "^8.0.1",
-    "vue": "^3.0.0-rc.12",
-    "zlib": "^1.0.5"
+    "normalize.css": "^8.0.1"
   }
 }

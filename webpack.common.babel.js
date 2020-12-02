@@ -86,7 +86,7 @@ const webpackConfig = {
         }
       },
       {
-        test: /\.sass$/,
+        test: /\.s[ac]ss$/,
         use: () => {
           const loaders = ['css-loader', 'resolve-url-loader', 'postcss-loader', 'sass-loader']
           return NODE_ENV === 'development'

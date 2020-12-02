@@ -1,5 +1,0 @@
-{ 
-  "exec": "yarn server", 
-  "watch": ["server/app.js", "server/routes/*", "server/package.json"], 
-  "ext": "js, html, css, json"
-}

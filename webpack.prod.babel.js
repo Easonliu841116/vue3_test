@@ -9,7 +9,6 @@ import OptimizeCssAssetsWebpackPlugin from 'optimize-css-assets-webpack-plugin'
 
 import webpackBaseConfig from './webpack.common.babel'
 import { NODE_ENV, PROD_ENV, PUBLICPATH, PRETTIFY } from './config'
-import CompressionPlugin from 'compression-webpack-plugin'
 
 function messagePrefix() {
   return chalk.bgBlue.black(' I ')
@@ -45,27 +44,6 @@ if (PRETTIFY !== 'prettify') {
   webpackConfig.plugins.push(
     new OptimizeCssAssetsWebpackPlugin()
   )
-}
-
-if(PROD_ENV === 'deploy') {
-  webpackConfig.plugins.push(
-  new CompressionPlugin({
-    filename: '[path][base].gz',
-    algorithm: 'gzip',
-    test: /\.js$|\.css$|\.html$/,
-    threshold: 1024,
-    minRatio: 0.8,
-  }),
-  new CompressionPlugin({
-    filename: '[path][base].br',
-    algorithm: 'brotliCompress',
-    test: /\.(js|css|html|svg)$/,
-    compressionOptions: {
-      level: 11,
-    },
-    threshold: 1024,
-    minRatio: 0.8,
-  }),)
 }
 
 console.log(
