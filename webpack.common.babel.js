@@ -64,7 +64,7 @@ const webpackConfig = {
     }),
     new Webapck.DefinePlugin({
       'process.env': {
-        DEV_ENV: JSON.stringify(DEV_ENV)
+        NODE_ENV: JSON.stringify(NODE_ENV)
       }
     }),
     ...pageWalker(ViewSrc).map(name => new HtmlWebpackPlugin(template(name))),
