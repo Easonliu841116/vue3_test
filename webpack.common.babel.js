@@ -5,7 +5,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import Webapck from 'webpack'
 
-import { ENGINE, DEV_ENV, PROD_ENV, NODE_ENV, PUBLICPATH, PRETTIFY, INCLUDEDIR } from './config'
+import { ENGINE, NODE_ENV, PUBLICPATH, INCLUDEDIR } from './config'
 import imgpath from './src/js/hbsHelpers/imgpath'
 
 const ViewSrc = path.resolve(__dirname, 'src/views/pages')
@@ -21,7 +21,7 @@ function template(page) {
     template: `./views/pages/${page}.${ENGINE}`,
     filename: `${page}.html`,
     chunks: ['vendor', page],
-    minify: PRETTIFY === 'prettify' ? false : true
+    minify: NODE_ENV === 'development' ? false : true
   }
 }
 
@@ -64,10 +64,7 @@ const webpackConfig = {
     }),
     new Webapck.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify(NODE_ENV),
-        DEV_ENV: JSON.stringify(DEV_ENV),
-        PROD_ENV: JSON.stringify(PROD_ENV),
-        PRETTIFY: JSON.stringify(PRETTIFY)
+        DEV_ENV: JSON.stringify(DEV_ENV)
       }
     }),
     ...pageWalker(ViewSrc).map(name => new HtmlWebpackPlugin(template(name))),
@@ -91,8 +88,6 @@ const webpackConfig = {
           const loaders = ['css-loader', 'resolve-url-loader', 'postcss-loader', 'sass-loader']
           return NODE_ENV === 'development'
             ? ['style-loader', ...loaders.map(el => el += '?sourceMap=true')]
-            : DEV_ENV === 'cssextract'
-            ? [MiniCssExtractPlugin.loader, ...loaders.map(el => el += '?sourceMap=true')]
             : [MiniCssExtractPlugin.loader, ...loaders]
         }
       },
